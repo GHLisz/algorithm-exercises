@@ -7,9 +7,9 @@ class Solution:
         # write your code here
         start, end = 0, len(s)-1
         while start < end:
-            while start<end and not s[start].isalpha() and not s[start].isdigit():
+            while start<end and not s[start].isalnum():
                 start += 1
-            while start<end and not s[end].isalpha() and not s[end].isdigit():
+            while start<end and not s[end].isalnum():
                 end -= 1
             if start<end and s[start].lower() != s[end].lower():
                 return False
