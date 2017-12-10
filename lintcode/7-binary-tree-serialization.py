@@ -17,18 +17,17 @@ class Solution:
 
     def serialize(self, root):
         # write your code here
-        if not root:
-            return '{}'
-        q, idx = [root], 0
-        while idx < len(q):
-            if q[idx]:
-                q.append(q[idx].left)
-                q.append(q[idx].right)
-            idx += 1
-        while not q[-1]:
-            q.pop()
+        def build(node, res):
+            if not node:
+                res.append('#')
+            else:
+                res.append(str(node.val))
+                build(node.left, res)
+                build(node.right, res)
 
-        return '{%s}' % ','.join([str(node.val) if node else '#' for node in q])
+        res = []
+        build(root, res)
+        return ','.join(res)
 
     """
     @param data: A string serialized by your serialize method.
@@ -41,23 +40,15 @@ class Solution:
 
     def deserialize(self, data):
         # write your code here
-        if data == '{}':
-            return None
-
-        vals = data[1:-1].split(',')
-        root = TreeNode(int(vals[0]))
-        q, idx = [root], 0
-        is_left = True
-
-        for val in vals[1:]:
-            if not val == '#':
+        def build(nodes):
+            val = nodes.pop(0)
+            if val == '#':
+                return None
+            else:
                 node = TreeNode(int(val))
-                if is_left:
-                    q[idx].left = node
-                else:
-                    q[idx].right = node
-                q.append(node)
-            if not is_left:
-                idx += 1
-            is_left = not is_left
-        return root
+                node.left = build(nodes)
+                node.right = build(nodes)
+                return node
+
+        nodes = data.split(',')
+        return build(nodes)
