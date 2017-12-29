@@ -4,7 +4,7 @@ class Solution:
     @param: target: A string
     @return: A string denote the minimum window, return "" if there is no such a string
     """
-    def minWindow(self, source , target):
+    def minWindow(self, source, target):
         # write your code here
         s, t = source, target
         need, missing = collections.Counter(t), len(t)
