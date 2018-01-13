@@ -14,10 +14,9 @@ class Solution:
     @param: B: A TreeNode in a Binary.
     @return: Return the least common ancestor(LCA) of the two nodes.
     """
-
     def lowestCommonAncestor(self, root, A, B):
         # write your code here
-        if root is None:
+        if not root:
             return None
         if root is A or root is B:
             return root
@@ -25,10 +24,8 @@ class Solution:
         left = self.lowestCommonAncestor(root.left, A, B)
         right = self.lowestCommonAncestor(root.right, A, B)
 
-        if left is not None and right is not None:
+        if left and right:
             return root
-        if left is not None:
+        if left:
             return left
-        if right is not None:
-            return right
-        return None
+        return right
