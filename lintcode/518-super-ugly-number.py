@@ -7,16 +7,9 @@ class Solution:
 
     def nthSuperUglyNumber(self, n, primes):
         # write your code here
-        import heapq
-        times = [0] * len(primes)
-        uglys = [1]
-        minlist = [(primes[i] * uglys[times[i]], i) for i in range(len(times))]
-        heapq.heapify(minlist)
-
-        while len(uglys) < n:
-            umin, min_times = heapq.heappop(minlist)
-            times[min_times] += 1
-            if umin != uglys[-1]:
-                uglys.append(umin)
-            heapq.heappush(minlist, (primes[min_times] * uglys[times[min_times]], min_times))
-        return uglys[-1]
+        import heapq, itertools
+        uglies = [1]
+        merged = heapq.merge(*map(lambda p: (u*p for u in uglies), primes))
+        uniqed = (u for u, _ in itertools.groupby(merged))
+        map(uglies.append, itertools.islice(uniqed, n-1))
+        return uglies[-1]
