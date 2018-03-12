@@ -6,10 +6,7 @@ class Solution:
         index = 1
         factor = 1
         for i in range(len(A)-1, -1, -1):
-            smaller_num_count = 0
-            for j in range(i+1, len(A)):
-                if A[i] > A[j]:
-                    smaller_num_count += 1
+            smaller_num_count = len(filter(lambda x: x < A[i], A[i+1:]))
             index += factor * smaller_num_count
             factor *= len(A) - i
         return index
