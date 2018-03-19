@@ -2,9 +2,9 @@ class Solution:
     # @param board, a 9x9 2D array
     # @return a boolean
     def isValidSudoku(self, board):
-        row = [set([]) for i in range(9)]
-        col = [set([]) for i in range(9)]
-        grid = [set([]) for i in range(9)]
+        row = [set() for _ in range(9)]
+        col = [set() for _ in range(9)]
+        grid = [set() for _ in range(9)]
 
         for r in range(9):
             for c in range(9):
