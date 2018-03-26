@@ -4,12 +4,9 @@ class Solution:
     # @return: The maximum size
     def backPack(self, m, A):
         # write your code here
-        dp = [0 for _ in range(m + 1)]
-        dp[0] = 1
-        ans = 0
-        for item in A:
-            for i in range(m, -1, -1):
-                if i - item >= 0 and dp[i - item] > 0:
-                    ans = max(ans, i)
-                    dp[i] = 1
-        return ans
+        dp = [0] * (m+1)  # dp[m]: how full of size m backpack
+        for i in range(len(A)):
+            for j in range(m, -1, -1):
+                if j >= A[i]:
+                    dp[j] = max(dp[j], dp[j-A[i]]+A[i])
+        return dp[m]

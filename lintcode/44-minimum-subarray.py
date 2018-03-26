@@ -7,9 +7,8 @@ class Solution:
         # write your code here
         if not nums:
             return 0
-        sum_, min_ = 0, 999999
-        for num in nums:
-            sum_ = 0 if sum_ > 0 else sum_
-            sum_ += num
-            min_ = min(sum_, min_)
-        return min_
+        min_ending_here = min_so_far = nums[0]
+        for v in nums[1:]:
+            min_ending_here = min(v, min_ending_here+v)
+            min_so_far = min(min_so_far, min_ending_here)
+        return min_so_far
