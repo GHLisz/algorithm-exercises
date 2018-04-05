@@ -2,30 +2,31 @@
 Definition of TreeNode:
 class TreeNode:
     def __init__(self, val):
-        this.val = val
-        this.left, this.right = None, None
+        self.val = val
+        self.left, self.right = None, None
 """
 
 
 class Solution:
     """
-    @param: root: a TreeNode, the root of the binary tree
-    @return:
+    @param root: a TreeNode, the root of the binary tree
+    @return: nothing
     """
 
     def flatten(self, root):
         # write your code here
-        self.lastNode = None
-        self.helper(root)
-
-    def helper(self, root):
         if not root:
             return
-        if self.lastNode:
-            self.lastNode.left = None
-            self.lastNode.right = root
+        if root.left:
+            self.flatten(root.left)
+        if root.right:
+            self.flatten(root.right)
 
-        self.lastNode = root
-        right = root.right
-        self.helper(root.left)
-        self.helper(right)
+        tmp = root.right
+        root.right = root.left
+        root.left = None
+
+        while root.right:
+            root = root.right
+
+        root.right = tmp
