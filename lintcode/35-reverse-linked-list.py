@@ -18,20 +18,20 @@ class Solution:
 
     def reverse(self, head):
         # write your code here
-        if head is None or head.next is None:
+        if not head:
             return head
 
-        new_head = head
-        cur = head.next
-        new_head.next = None
+        dummy = ListNode(-1)
+        dummy.next = head
+        cur = head
 
-        while cur is not None:
-            nxt = cur.next
-            cur.next = new_head
-            new_head = cur
-            cur = nxt
+        while cur.next:
+            tmp = cur.next
+            cur.next = tmp.next
+            tmp.next = dummy.next
+            dummy.next = tmp
 
-        return new_head
+        return dummy.next
 
     # solution 2
     def reverse(self, head):
