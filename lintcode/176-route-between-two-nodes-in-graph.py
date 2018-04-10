@@ -17,18 +17,35 @@ class Solution:
 
     def hasRoute(self, graph, s, t):
         # write your code here
-        def dfs(i, countrd, graph, t):
-            if countrd[i] == 1:
-                return False
-            if i == t:
-                return True
-            countrd[i] = 1
-            for j in i.neighbors:
-                if countrd[j] == 0 and dfs(j, countrd, graph, t):
-                    return True
+        def sol1():  # bfs
+            if graph is None or s is None or t is None: return False
+            queue, visited = [], set()
+            queue.append(s)
+            while queue:
+                for i in range(len(queue)):
+                    node = queue.pop(0)
+                    visited.add(node)
+                    if node is t:
+                        return True
+                    for n in node.neighbors:
+                        if n in visited:
+                            continue
+                        queue.append(n)
             return False
 
-        countrd = {}
-        for x in graph:
-            countrd[x] = 0
-        return dfs(s, countrd, graph, t)
+        def sol2():  # dfs
+            def dfs(graph, s, t, visited):
+                if s is None or t is None: return False
+                if s == t: return True
+                visited.add(s)
+                for node in s.neighbors:
+                    if node in visited:
+                        continue
+                    if dfs(graph, node, t, visited):
+                        return True
+                return False
+
+            visited = set()
+            return dfs(graph, s, t, visited)
+
+        return sol1()
