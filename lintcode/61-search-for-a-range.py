@@ -15,7 +15,7 @@ class Solution:
         while start + 1 < end:
             mid = (start + end) // 2
             if A[mid] < target:
-                start = mid
+                start = mid + 1
             else:
                 end = mid
 
@@ -32,7 +32,7 @@ class Solution:
             if A[mid] <= target:
                 start = mid
             else:
-                end = mid
+                end = mid - 1
 
         res[1] = end if A[end] == target else start
 
