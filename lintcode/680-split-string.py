@@ -6,21 +6,15 @@ class Solution:
 
     def splitString(self, s):
         # write your code here
-        if s is None:
-            return []
-        if len(s) == 0:
-            return [[]]
+        def dfs(s, idx, tmp, res):
+            if idx == len(s):
+                res.append(tmp[:])
+                return
+            for i in range(idx, min(idx+2, len(s))):
+                tmp.append(s[idx:i+1])
+                dfs(s, i+1, tmp, res)
+                tmp.pop()
 
-        results = []
-        self.dfs(results, [], 0, s)
-        return results
-
-    def dfs(self, results, result, index, s):
-        if index == len(s):
-            results.append(result[:])
-            return
-
-        for i in range(index, min(index + 2, len(s))):
-            result.append(s[index: i + 1])
-            self.dfs(results, result, i + 1, s)
-            result.pop()
+        res = []
+        dfs(s, 0, [], res)
+        return res
