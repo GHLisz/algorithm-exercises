@@ -19,5 +19,6 @@ class Solution:
                     return 1
             return 1 if len(a) > len(b) else -1
 
-        words.sort(cmp)
+        from functools import cmp_to_key
+        words.sort(key=cmp_to_key(cmp))
         return words
