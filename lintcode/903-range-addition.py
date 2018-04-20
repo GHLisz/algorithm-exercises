@@ -15,9 +15,6 @@ class Solution:
             if update[1] < length - 1:
                 res[update[1] + 1] -= update[2]
 
-        v = 0
-        for i in range(length):
-            v += res[i]
-            res[i] = v
-
+        from itertools import accumulate
+        res = list(accumulate(res))
         return res
