@@ -1,20 +1,14 @@
 class Solution:
     """
-    @param a, b: Two integer
-    return: An integer
+    @param a: An integer
+    @param b: An integer
+    @return: An integer
     """
-
     def bitSwapRequired(self, a, b):
         # write your code here
-        num = a ^ b
-        count = 0
-
-        if num < 0:
-            import sys
-            num ^= sys.maxsize
-            count += 1
-
-        while num != 0:
-            count += num % 2
-            num = num // 2
-        return count
+        c = a ^ b
+        cnt = 0
+        for i in range(32):
+            if c & (1 << i) != 0:
+                cnt += 1
+        return cnt
