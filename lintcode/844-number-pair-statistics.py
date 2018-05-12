@@ -9,6 +9,7 @@ class Solution:
         for v in p:
             stat[v.x % 2][v.y % 2] += 1
         ans = 0
-        for t in stat:
-            ans = ans + t[0] * (t[0] - 1) / 2 + t[1] * (t[1] - 1) / 2
+        for lis in stat:
+            for n in lis:
+                ans += n * (n-1) / 2
         return ans
