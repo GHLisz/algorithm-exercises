@@ -13,18 +13,19 @@ class Solution:
     """
     def longestConsecutive2(self, root):
         # write your code here
-        self.ans = 0
-        if root: self.solve(root)
-        return self.ans
+        def solve(root):
+            nonlocal ans
+            inc = dec = 0
+            for child in (root.left, root.right):
+                if not child: continue
+                cinc, cdec = solve(child)
+                if child.val == root.val - 1:
+                    dec = max(dec, cdec)
+                elif child.val == root.val + 1:
+                    inc = max(inc, cinc)
+            ans = max(ans, inc + dec + 1)
+            return inc + 1, dec + 1
 
-    def solve(self, root):
-        inc = dec = 0
-        for child in (root.left, root.right):
-            if not child: continue
-            cinc, cdec = self.solve(child)
-            if child.val == root.val - 1:
-                dec = max(dec, cdec)
-            elif child.val == root.val + 1:
-                inc = max(inc, cinc)
-        self.ans = max(self.ans, inc + dec + 1)
-        return inc + 1, dec + 1
+        ans = 0
+        if root: solve(root)
+        return ans
