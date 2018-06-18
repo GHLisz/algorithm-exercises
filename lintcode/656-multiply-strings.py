@@ -7,8 +7,6 @@ class Solution:
 
     def multiply(self, num1, num2):
         # write your code here
-        if num1 == '123' and num2 == '45': return '5535'
-
         m, n = len(num1), len(num2)
         prd = [0] * (m + n)
 
