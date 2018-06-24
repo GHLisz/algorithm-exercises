@@ -5,13 +5,9 @@ class Solution:
     """
     def findContestMatch(self, n):
         # write your code here
-        m = list(range(1, n+1))
+        m = list(range(1, n + 1))
         while n > 1:
-            for i in range(n//2):
-                m[i] = "(" \
-                       + str(m[i]) \
-                       + "," \
-                       + str(m[n - i - 1]) \
-                       + ")"
+            for i in range(n // 2):
+                m[i] = f'({m[i]},{m[n-i-1]})'
             n //= 2
         return m[0]
