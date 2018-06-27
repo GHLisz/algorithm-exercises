@@ -16,7 +16,7 @@ class Solution:
     def houseRobber3(self, root):
         # write your code here
         def rob(root):
-            res = [0, 0]
+            res = [0, 0]    # [not robbed, robbed]
             if not root: return res
             left, right = rob(root.left), rob(root.right)
             res[0] = max(left) + max(right)

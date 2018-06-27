@@ -8,26 +8,25 @@ class TreeNode:
 
 
 class Solution:
-    # @param {TreeNode} root the root of the binary tree
-    # @return {List[str]} all root-to-leaf paths
+    """
+    @param root: the root of the binary tree
+    @return: all root-to-leaf paths
+    """
+
     def binaryTreePaths(self, root):
-        # Write your code here
-        result = []
-        if root is None:
-            return result
-        path_stack = []
-        self.helper(root, result, path_stack)
-        return result
+        # write your code here
+        def t(root, res, paths):
+            paths.append(str(root.val))
+            if not any([root.left, root.right]):
+                res.append('->'.join(paths))
+            else:
+                if root.left:
+                    t(root.left, res, paths)
+                if root.right:
+                    t(root.right, res, paths)
+            paths.pop()
 
-    def helper(self, root, result, path_stack):
-        path_stack.append(str(root.val))
-
-        if root.left is None and root.right is None:
-            result.append('->'.join(path_stack))
-            path_stack.pop()
-        else:
-            if root.left:
-                self.helper(root.left, result, path_stack)
-            if root.right:
-                self.helper(root.right, result, path_stack)
-            path_stack.pop()
+        if not root: return []
+        res = []
+        t(root, res, [])
+        return res
