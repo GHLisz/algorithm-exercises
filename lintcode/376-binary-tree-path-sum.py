@@ -16,25 +16,17 @@ class Solution:
 
     def binaryTreePathSum(self, root, target):
         # write your code here
-        result = []
-        if not root:
-            return result
+        def find(res, root, cur_sum, target, paths):
+            cur_sum += root.val
+            paths.append(root.val)
+            if cur_sum == target and not any([root.left, root.right]):
+                res.append(paths[:])
+            else:
+                if root.left: find(res, root.left, cur_sum, target, paths)
+                if root.right: find(res, root.right, cur_sum, target, paths)
+            paths.pop()
 
-        path_stack = []
-        self.valid_path(result, root, 0, target, path_stack)
-        return result
-
-    def valid_path(self, result, root, cur_sum, target, path_stack):
-        cur_sum += root.val
-        path_stack.append(root.val)
-
-        if cur_sum == target and root.left is None and root.right is None:
-            result.append([node for node in path_stack])
-            path_stack.pop()
-        else:
-            if root.left:
-                self.valid_path(result, root.left, cur_sum, target, path_stack)
-            if root.right:
-                self.valid_path(result, root.right, cur_sum, target, path_stack)
-            path_stack.pop()
-
+        if not root: return []
+        res = []
+        find(res, root, 0, target, [])
+        return res
