@@ -6,17 +6,15 @@ class Solution:
 
     def validPalindrome(self, s):
         # Write your code here
-        def is_palindrome(s, left, right, flag):
+        def check(s, left, right, flag, threshold):
             while left < right:
                 if s[left] == s[right]:
-                    left += 1
-                    right -= 1
+                    left, right = left + 1, right - 1
                 else:
-                    if flag == 1:
-                        return False
-                    flag = 1
-                    return is_palindrome(s, left + 1, right, flag) or \
-                           is_palindrome(s, left, right - 1, flag)
+                    flag += 1
+                    if flag > threshold: return False
+                    return check(s, left + 1, right, flag, threshold) \
+                           or check(s, left, right - 1, flag, threshold)
             return True
 
-        return is_palindrome(s, 0, len(s) - 1, 0)
+        return check(s, 0, len(s) - 1, 0, 1)

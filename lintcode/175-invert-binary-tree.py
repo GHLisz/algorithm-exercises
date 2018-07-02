@@ -14,8 +14,7 @@ class Solution:
     """
     def invertBinaryTree(self, root):
         # write your code here
-        if not root:
-            return
+        if not root: return
         root.left, root.right = root.right, root.left
         self.invertBinaryTree(root.left)
         self.invertBinaryTree(root.right)

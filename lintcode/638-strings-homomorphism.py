@@ -1,30 +1,24 @@
 class Solution:
     """
-    @param: s: a string
-    @param: t: a string
+    @param s: a string
+    @param t: a string
     @return: true if the characters in s can be replaced to get t or false
     """
 
     def isIsomorphic(self, s, t):
         # write your code here
-        if not s or not t:
-            return False
-        if len(s) != len(t):
-            return False
+        def sol1():
+            if (not all([s, t])) or (len(s) != len(t)): return False
+            n, dic1, dic2 = len(s), {}, {}
+            for i in range(n):
+                dic1[s[i]] = i if s[i] not in dic1 else dic1[s[i]]
+                dic2[t[i]] = i if t[i] not in dic2 else dic2[t[i]]
+            return [dic1[s[i]] for i in range(n)] == [dic2[t[i]] for i in range(n)]
 
-        n = len(s)
-        dic1 = {}
-        dic2 = {}
-        index1 = [None for _ in range(n)]
-        index2 = [None for _ in range(n)]
+        def sol2():
+            return len(set(zip(s, t))) == len(set(s)) == len(set(t))
 
-        for i in range(n):
-            if s[i] not in dic1:
-                dic1[s[i]] = i
-            if t[i] not in dic2:
-                dic2[t[i]] = i
-        for i in range(n):
-            index1[i] = dic1[s[i]]
-            index2[i] = dic2[t[i]]
+        def sol3():
+            return list(map(s.find, s)) == list(map(t.find, t))
 
-        return index1 == index2
+        return sol2()

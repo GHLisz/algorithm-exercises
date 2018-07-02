@@ -8,20 +8,17 @@ class Solution:
         # write your code here
         def encode(s):
             code = 0
-            dic = {"A": 1, "C": 2, "T": 3, "G": 4, }
             for c in s:
                 code <<= 2
-                code += dic[c]
+                code += {"A": 1, "C": 2, "T": 3, "G": 4, }[c]
             return code
 
-        res, hash = [], {}
+        from collections import defaultdict
+        res, m = [], defaultdict(int)
+
         for i in range(10, len(s) + 1):
-            substr = s[i - 10:i]
-            code = encode(substr)
-            if code in hash:
-                if hash[code] == 1:
-                    res.append(substr)
-                hash[code] = 2
-            else:
-                hash[code] = 1
+            sub = s[i - 10:i]
+            code = encode(sub)
+            if m[code] == 1: res.append(sub)
+            m[code] += 1
         return res
