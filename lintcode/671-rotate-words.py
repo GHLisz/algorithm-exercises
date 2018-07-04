@@ -6,11 +6,14 @@ class Solution:
 
     def countRotateWords(self, words):
         # Write your code here
-        set_ = set(self.reg_word(word) for word in words)
-        return len(set_)
+        if not words: return 0
 
-    def reg_word(self, word):
-        size = len(word)
-        possibles = [(word[i:] + word[:i]) for i in range(size)]
-        possibles.sort()
-        return possibles[0]
+        count, dic = 0, set()
+
+        for w in words:
+            for i in range(len(w)):
+                if w[i:] + w[:i] in dic: break
+            else:
+                dic.add(w)
+                count += 1
+        return count

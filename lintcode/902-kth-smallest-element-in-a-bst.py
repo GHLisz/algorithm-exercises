@@ -17,14 +17,10 @@ class Solution:
     def kthSmallest(self, root, k):
         # write your code here
         def children_count(root):
-            if root is None:
-                return 0
+            if root is None: return 0
             return 1 + children_count(root.left) + children_count(root.right)
 
         cnt = children_count(root.left)
-        if k <= cnt:
-            return self.kthSmallest(root.left, k)
-        elif k > cnt + 1:
-            return self.kthSmallest(root.right, k - cnt - 1)
-
+        if k <= cnt: return self.kthSmallest(root.left, k)
+        if k > cnt + 1: return self.kthSmallest(root.right, k - cnt - 1)
         return root.val

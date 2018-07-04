@@ -15,13 +15,10 @@ class Solution:
 
     def isValidBST(self, root):
         # write your code here
-        def valid(root, mn, mx):
-            if not root:
-                return True
-            if root.val <= mn or root.val >= mx:
-                return False
-            return valid(root.left, mn, root.val) and \
-                   valid(root.right, root.val, mx)
+        def valid(node, mn, mx):
+            if not node: return True
+            if node.val <= mn or node.val >= mx: return False
+            return all([valid(node.left, mn, node.val),
+                        valid(node.right, node.val, mx)])
 
-        import math
-        return valid(root, -math.inf, math.inf)
+        return valid(root, -float('inf'), float('inf'))

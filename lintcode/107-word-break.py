@@ -4,18 +4,11 @@ class Solution:
     @param: dict: A dictionary of words dict
     @return: A boolean
     """
+
     def wordBreak(self, s, dict):
         # write your code here
-        if not dict: return not bool(s)
-
-        ml, n = max(len(w) for w in dict), len(s)
-        # dp[i] = True if (s[:i] in dict) or (dp[k] and s[k+1:i] in dict)
-        dp = [False] * (n + 1)
-        dp[0] = True
-
-        for i in range(1, n + 1):
-            for j in range(i - 1, max(i - ml - 1, -1), -1):
-                if dp[j] and s[j:i] in dict:
-                    dp[i] = True
-                    break
-        return dp[n]
+        dp, words_set, word_max_len = [True], set(dict), max(map(len, dict), default=0)
+        for i in range(1, len(s) + 1):
+            dp += any(dp[j] and s[j:i] in words_set
+                      for j in range(max(0, i - word_max_len), i)),
+        return dp[-1]
