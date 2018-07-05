@@ -1,19 +1,18 @@
 class Solution:
     """
-    @param nums: The rotated sorted array
+    @param nums: An integer array
     @return: nothing
     """
-    def reverse(self, nums, start, end):
-        i, j = start, end
-        while i < j:
-            nums[i], nums[j] = nums[j], nums[i]
-            i += 1
-            j -= 1
 
     def recoverRotatedSortedArray(self, nums):
         # write your code here
-        for index in range(0, len(nums)-1):
-            if nums[index] > nums[index+1]:
-                self.reverse(nums, 0, index)
-                self.reverse(nums, index+1, len(nums)-1)
-                self.reverse(nums, 0, len(nums)-1)
+        def reverse(nums, start, end):
+            while start < end:
+                nums[start], nums[end] = nums[end], nums[start]
+                start, end = start + 1, end - 1
+
+        for i in range(len(nums) - 1):
+            if nums[i] > nums[i + 1]:
+                reverse(nums, 0, i)
+                reverse(nums, i + 1, len(nums) - 1)
+                reverse(nums, 0, len(nums) - 1)

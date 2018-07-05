@@ -1,13 +1,13 @@
 class Solution:
     """
     @param s: The first string
-    @param b: The second string
-    @return true or false
+    @param t: The second string
+    @return: true or false
     """
     def anagram(self, s, t):
         # write your code here
-        sl = [i for i in s]
-        tl = [i for i in t]
-        sl.sort()
-        tl.sort()
-        return "".join(sl) == "".join(tl)
+        NO_OF_CHARS = 256
+        sc, tc = [0] * NO_OF_CHARS, [0] * NO_OF_CHARS
+        for c in s: sc[ord(c)] += 1
+        for c in t: tc[ord(c)] += 1
+        return sc == tc

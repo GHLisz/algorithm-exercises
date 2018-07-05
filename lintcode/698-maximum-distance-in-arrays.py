@@ -6,9 +6,10 @@ class Solution:
     def maxDiff(self, arrs):
         # write your code here
         res, start, end = 0, arrs[0][0], arrs[0][-1]
-        for i in range(1, len(arrs)):
-            res = max(res, max(abs(arrs[i][-1]-start),
-                               abs(end-arrs[i][0])))
-            start = min(start, arrs[i][0])
-            end = max(end, arrs[i][-1])
+        for arr in arrs[1:]:
+            res = max(res,
+                      max(abs(arr[-1]-start),
+                          abs(end-arr[0])))
+            start = min(start, arr[0])
+            end = max(end, arr[-1])
         return res
