@@ -5,7 +5,6 @@ class Solution:
     """
     def smallestFactorization(self, a):
         # Write your code here
-        import sys
         if a < 2: return a
         res, mul = 0, 1
         for i in range(9, 1, -1):
