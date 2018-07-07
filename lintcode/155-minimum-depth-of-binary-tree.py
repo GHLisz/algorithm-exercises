@@ -9,27 +9,21 @@ class TreeNode:
 
 class Solution:
     """
-    @param root: The root of binary tree.
+    @param root: The root of binary tree
     @return: An integer
     """
 
     def minDepth(self, root):
         # write your code here
-        return self.getMin(root)
-
-    def getMin(self, root):
-        if root is None:
-            return 0
-
-        left, right = 0, 0
+        if root is None: return 0
 
         if root.left is not None:
-            left = self.getMin(root.left)
+            left = self.minDepth(root.left)
         else:
-            return self.getMin(root.right) + 1
+            return self.minDepth(root.right) + 1
 
         if root.right is not None:
-            right = self.getMin(root.right)
+            right = self.minDepth(root.right)
         else:
             return left + 1
 
