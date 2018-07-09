@@ -1,18 +1,18 @@
 class Solution:
     """
-    @param n and m: positive integer(1 <= n , m <= 100)
-    @return an integer
+    @param m: positive integer (1 <= m <= 100)
+    @param n: positive integer (1 <= n <= 100)
+    @return: An integer
     """
     def uniquePaths(self, m, n):
         # write your code here
-        if m == n == 1:
-            return 1
-        a = [[0 for col in range(m)] for row in range(n)]
+        if m == n == 1: return 1
+        dp = [[0]*m for _ in range(n)]
         for col in range(m):
-            a[0][col] = 1
+            dp[0][col] = 1
         for row in range(n):
-            a[row][0] = 1
+            dp[row][0] = 1
         for col in range(1, m):
             for row in range(1, n):
-                a[row][col] = a[row-1][col] + a[row][col-1]
-        return a[n-1][m-1]
+                dp[row][col] = dp[row-1][col] + dp[row][col-1]
+        return dp[-1][-1]

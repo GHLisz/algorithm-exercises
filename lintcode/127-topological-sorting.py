@@ -28,6 +28,25 @@ class Solution:
             return res
 
         def sol2():  # bfs
-            pass  # todo
+            res, q, dic = [], [], {}
 
-        return sol1()
+            for node in graph:
+                for neighbor in node.neighbors:
+                    dic[neighbor] = dic.get(neighbor, 0) + 1
+
+            for node in graph:
+                if node not in dic:
+                    q.append(node)
+                    res.append(node)
+
+            while len(q):
+                node = q.pop()
+                for n in node.neighbors:
+                    dic[n] -= 1
+                    if dic[n] == 0:
+                        res.append(n)
+                        q.append(n)
+
+            return res
+
+        return sol2()
