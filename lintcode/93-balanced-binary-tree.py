@@ -15,16 +15,10 @@ class Solution:
 
     def isBalanced(self, root):
         # write your code here
-        return self.max_depth(root) is not None
+        def max_depth(root):
+            if root is None: return 0
+            ld, rd = max_depth(root.left), max_depth(root.right)
+            if (ld is None) or (rd is None) or (abs(ld - rd) > 1): return None
+            return max(ld, rd) + 1
 
-    def max_depth(self, root):
-        if root is None:
-            return 0
-
-        left_h = self.max_depth(root.left)
-        right_h = self.max_depth(root.right)
-
-        if (left_h is None) or (right_h is None) or (abs(left_h - right_h) > 1):
-            return None
-
-        return max(left_h, right_h) + 1
+        return max_depth(root) is not None
