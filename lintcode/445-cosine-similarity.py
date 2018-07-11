@@ -7,14 +7,7 @@ class Solution:
 
     def cosineSimilarity(self, A, B):
         # write your code here
-        if len(A) != len(B):
-            return 2
-
-        n = len(A)
-        up = 0
-        for i in range(n):
-            up += A[i] * B[i]
-        down = sum(a * a for a in A) * sum(b * b for b in B)
-        if down == 0:
-            return 2
-        return up / (down ** 0.5)
+        if len(A) != len(B): return 2
+        up = sum(a * b for a, b in zip(A, B))
+        down = sum(map(lambda x: x * x, A)) * sum(map(lambda x: x * x, B))
+        return up / (down ** 0.5) if down else 2
