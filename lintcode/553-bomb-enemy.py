@@ -5,10 +5,8 @@ class Solution:
     """
     def maxKilledEnemies(self, grid):
         # write your code here
-        if (not grid) or (not grid[0]):
-            return 0
-        m, n = len(grid), len(grid[0])
-        res = 0
+        if (not grid) or (not grid[0]): return 0
+        res, m, n = 0, len(grid), len(grid[0])
         row_cnt, col_cnt = 0, [0]*n
         for i in range(m):
             for j in range(n):

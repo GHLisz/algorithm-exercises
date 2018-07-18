@@ -14,8 +14,7 @@ class Solution:
     """
     def cloneTree(self, root):
         # write your code here
-        if root is None:
-            return None
+        if root is None: return None
         cloned_root = TreeNode(root.val)
         cloned_root.left = self.cloneTree(root.left)
         cloned_root.right = self.cloneTree(root.right)
