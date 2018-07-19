@@ -1,20 +1,16 @@
 class Solution:
     """
-    @param A: a list of integers
-    @return an integer
+    @param: nums: An ineger array
+    @return: An integer
     """
 
-    def removeDuplicates(self, A):
+    def removeDuplicates(self, nums):
         # write your code here
-        if A == []:
-            return 0
-        if len(A) == 1:
-            return 1
+        if len(nums) <= 1: return len(nums)
+
         count = 0
-        for i in range(0, len(A)):
-            if A[i] == A[i - 1]:
-                continue
-            else:
-                A[count] = A[i]
+        for i in range(len(nums)):
+            if nums[i] != nums[i - 1]:
+                nums[count] = nums[i]
                 count += 1
         return count

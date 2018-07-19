@@ -3,6 +3,7 @@ class Solution:
     @param path: the original path
     @return: the simplified path
     """
+
     def simplifyPath(self, path):
         # write your code here
         places, stack = [p for p in path.split('/') if p and p != '.'], []

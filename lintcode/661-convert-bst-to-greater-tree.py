@@ -9,20 +9,20 @@ class TreeNode:
 
 class Solution:
     """
-    @param: root: the root of binary tree
+    @param root: the root of binary tree
     @return: the new root
     """
 
     def convertBST(self, root):
         # write your code here
-        self.sum = 0
-        self.helper(root)
-        return root
+        def helper(node):
+            nonlocal total
+            if not node: return
+            helper(node.right)
+            total += node.val
+            node.val = total
+            helper(node.left)
 
-    def helper(self, root):
-        if not root:
-            return
-        self.helper(root.right)
-        self.sum += root.val
-        root.val = self.sum
-        self.helper(root.left)
+        total = 0
+        helper(root)
+        return root
