@@ -17,15 +17,12 @@ class Solution:
 
     def inorderSuccessor(self, root, p):
         # write your code here
-        if not root or not p:
-            return None
+        if not all([root, p]): return None
 
         ans = None
-
         while root:
             if root.val > p.val:
                 ans, root = root, root.left
             else:
                 root = root.right
-
         return ans
