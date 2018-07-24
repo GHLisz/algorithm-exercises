@@ -17,7 +17,7 @@ class Solution:
         # write your code here
         def valid(node, mn, mx):
             if not node: return True
-            if node.val <= mn or node.val >= mx: return False
+            if not mn < node.val < mx: return False
             return all([valid(node.left, mn, node.val),
                         valid(node.right, node.val, mx)])
 
