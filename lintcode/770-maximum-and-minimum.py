@@ -6,12 +6,9 @@ class Solution:
 
     def maxAndMin(self, matrix):
         # write your code here
-        if not matrix:
-            return []
-
-        max_ = min_ = matrix[0][0]
+        if not matrix: return []
+        mx = mn = matrix[0][0]
         for row in matrix:
-            for elem in row:
-                max_ = max(max_, elem)
-                min_ = min(min_, elem)
-        return [max_, min_]
+            for e in row:
+                mx, mn = max(mx, e), min(mn, e)
+        return [mx, mn]
