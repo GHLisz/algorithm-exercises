@@ -8,14 +8,12 @@ class Solution:
     def findRadius(self, houses, heaters):
         # Write your code here
         import bisect
-        import math
 
-        res = -math.inf
         heaters.sort()
-
+        res = -float('inf')
         for house in houses:
-            pos = bisect.bisect_left(heaters, house)
-            dist1 = math.inf if pos == len(heaters) else heaters[pos] - house
-            dist2 = math.inf if pos < 1 else house - heaters[pos - 1]
+            pos = bisect.bisect_left(houses, house)
+            dist1 = float('inf') if pos == len(heaters) else heaters[pos] - house
+            dist2 = float('inf') if pos < 1 else house - heaters[pos - 1]
             res = max(res, min(dist1, dist2))
         return res

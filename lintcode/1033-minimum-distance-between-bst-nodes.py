@@ -15,17 +15,15 @@ class Solution:
 
     def minDiffInBST(self, root):
         # Write your code here
-        def inorder(root):
+        def inorder(node):
             nonlocal res, pre
-            if not root: return
-            inorder(root.left)
-            if pre:
-                res = min(res, root.val - pre)
-            pre = root.val
-            inorder(root.right)
+            if not node: return
 
-        import math
-        res = math.inf
-        pre = None
+            inorder(node.left)
+            res = min(res, node.val - pre) if pre else res
+            pre = node.val
+            inorder(node.right)
+
+        res, pre = float('inf'), None
         inorder(root)
         return res

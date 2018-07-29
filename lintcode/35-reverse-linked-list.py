@@ -11,36 +11,27 @@ class ListNode(object):
 
 class Solution:
     """
-    @param head: The first node of the linked list.
-    @return: You should return the head of the reversed linked list.
-                  Reverse it in-place.
+    @param head: n
+    @return: The new head of reversed linked list.
     """
 
     def reverse(self, head):
         # write your code here
-        if not head:
-            return head
+        def iterative(head):
+            if not head: return head
+            prev = None
+            while head:
+                tmp = head.next
+                head.next = prev
+                prev = head
+                head = tmp
+            return prev
 
-        dummy = ListNode(-1)
-        dummy.next = head
-        cur = head
+        def recursive(head):
+            if head is None or head.next is None: return head
+            new_head = recursive(head.next)
+            head.next.next = head
+            head.next = None
+            return new_head
 
-        while cur.next:
-            tmp = cur.next
-            cur.next = tmp.next
-            tmp.next = dummy.next
-            dummy.next = tmp
-
-        return dummy.next
-
-    # solution 2
-    def reverse(self, head):
-        # write your code here
-        if not head or not head.next:
-            return head
-
-        p = head
-        head = self.reverse(p.next)
-        p.next.next = p
-        p.next = None
-        return head
+        return iterative(head)
