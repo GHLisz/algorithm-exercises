@@ -29,9 +29,9 @@ class Solution(object):
         stack, total = [(n, 1) for n in nestedList], 0
 
         while stack:
-            next_, d = stack.pop(0)
-            if next_.isInteger():
-                total += d * next_.getInteger()
+            nxt, depth = stack.pop(0)
+            if nxt.isInteger():
+                total += depth * nxt.getInteger()
             else:
-                stack.extend([(n, d + 1) for n in next_.getList()])
+                stack.extend([n, depth + 1] for n in nxt.getList())
         return total
