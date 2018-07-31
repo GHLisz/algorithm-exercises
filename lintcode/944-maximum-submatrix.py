@@ -7,7 +7,7 @@ class Solution:
     def maxSubmatrix(self, matrix):
         # write your code here
         if (not matrix) or (not matrix[0]): return 0
-        row, col = n, m = len(matrix), len(matrix[0])
+        row, col = len(matrix), len(matrix[0])
 
         def max_subarray(arr):
             mn, mx, total = 0, -float('inf'), 0
