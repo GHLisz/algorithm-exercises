@@ -6,10 +6,9 @@ class Solution:
 
     def subarraySumClosest(self, nums):
         # write your code here
-        class Pair:
-            def __init__(self, value, pos):
-                self.value = value
-                self.pos = pos
+        from collections import namedtuple
+
+        Pair = namedtuple('Pair', ['val', 'pos'])
 
         def accumulate(iterable):
             total = 0
@@ -17,11 +16,11 @@ class Solution:
                 total += v
                 yield Pair(total, i)
 
-        s = sorted(accumulate(nums), key=lambda x: x.value)
-        res, mn = [0, 0], 999999 ** 2
+        s = sorted(accumulate(nums), key=lambda x: x.val)
 
+        res, mn = [0, 0], float('inf')
         for i in range(1, len(nums)):
-            diff = s[i].value - s[i - 1].value
+            diff = s[i].val - s[i - 1].val
             if diff < mn:
                 mn = diff
                 pos1, pos2 = sorted([s[i].pos, s[i - 1].pos])

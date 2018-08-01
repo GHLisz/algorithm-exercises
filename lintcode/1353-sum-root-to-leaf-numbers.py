@@ -17,9 +17,8 @@ class Solution:
         # write your code here
         def count(node, s):
             if not node: return 0
-            new_s = 10 * s + node.val
-            if not any([node.left, node.right]):
-                return new_s
-            return count(node.left, new_s) + count(node.right, new_s)
+            ns = 10 * s + node.val
+            if not any([node.left, node.right]): return ns
+            return count(node.left, ns) + count(node.right, ns)
 
         return count(root, 0)
