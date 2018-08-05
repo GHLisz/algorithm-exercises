@@ -6,7 +6,7 @@ class Solution:
 
     def diffWaysToCompute(self, input):
         # write your code here
-        return [eval(`a` + c + `b`)
+        return [eval(repr(a) + c + repr(b))
                 for i, c in enumerate(input) if c in '+-*'
                 for a in self.diffWaysToCompute(input[:i])
                 for b in self.diffWaysToCompute(input[i + 1:])] or [int(input)]
