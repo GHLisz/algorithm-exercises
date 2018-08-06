@@ -7,19 +7,15 @@ class Solution:
 
     def wordPattern(self, pattern, str):
         # write your code here
-        slist, dic, set_ = str.split(" "), {}, set()
-
-        if len(slist) != len(pattern):
-            return False
+        words, dic, showed = str.split(' '), {}, set()
+        if len(words) != len(pattern): return False
 
         for i in range(len(pattern)):
-            p, s = pattern[i], slist[i]
+            p, w = pattern[i], words[i]
             if p in dic:
-                if s != dic[p]:
-                    return False
+                if w != dic[p]: return False
             else:
-                if s in set_:
-                    return False
-                dic[p] = s
-                set_.add(s)
+                if w in showed: return False
+                dic[p] = w
+                showed.add(w)
         return True
