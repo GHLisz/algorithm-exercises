@@ -6,10 +6,8 @@ class Solution:
 
     def removeDuplicates(self, nums):
         # write your code here
-        if not nums:
-            return 0
-        if len(nums) < 3:
-            return len(nums)
+        if not nums: return 0
+        if len(nums) < 3: return len(nums)
 
         idx = 2
         for i in range(2, len(nums)):
