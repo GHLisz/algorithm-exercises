@@ -15,18 +15,12 @@ class Solution:
 
     def flatten(self, root):
         # write your code here
-        if not root:
-            return
-        if root.left:
-            self.flatten(root.left)
-        if root.right:
-            self.flatten(root.right)
+        if not root: return
+        if root.left: self.flatten(root.left)
+        if root.right: self.flatten(root.right)
 
         tmp = root.right
         root.right = root.left
         root.left = None
-
-        while root.right:
-            root = root.right
-
+        while root.right: root = root.right
         root.right = tmp
