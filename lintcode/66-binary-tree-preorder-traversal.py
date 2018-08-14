@@ -9,18 +9,18 @@ class TreeNode:
 
 class Solution:
     """
-    @param: root: A Tree
+    @param root: A Tree
     @return: Preorder in ArrayList which contains node values.
     """
+
     def preorderTraversal(self, root):
         # write your code here
-        result = []
-        self.traverse(root, result)
-        return result
+        def traverse(node, res):
+            if not node: return
+            res.append(node.val)
+            traverse(node.left, res)
+            traverse(node.right, res)
 
-    def traverse(self, root, result):
-        if not root:
-            return
-        result.append(root.val)
-        self.traverse(root.left, result)
-        self.traverse(root.right, result)
+        res = []
+        traverse(root, res)
+        return res
