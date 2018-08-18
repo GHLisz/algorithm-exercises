@@ -17,11 +17,11 @@ class Solution:
         # write your code here
         sub_sums = []
 
-        def sum_(node):
+        def get_sum(node):
             if not node: return 0
-            sub_sums.append(sum_(node.left) + sum_(node.right) + node.val)
+            sub_sums.append(get_sum(node.left) + get_sum(node.right) + node.val)
             return sub_sums[-1]
 
-        total = sum_(root)
+        total = get_sum(root)
         sub_sums.pop()
         return total / 2 in sub_sums

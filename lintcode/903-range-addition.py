@@ -11,10 +11,10 @@ class Solution:
         if not updates: return res
 
         for update in updates:
-            res[update[0]] += update[2]
-            if update[1] < length - 1:
-                res[update[1] + 1] -= update[2]
+            start, end, inc = update
+            res[start] += inc
+            if end < length - 1:
+                res[end + 1] -= inc
 
         from itertools import accumulate
-        res = list(accumulate(res))
-        return res
+        return list(accumulate(res))
