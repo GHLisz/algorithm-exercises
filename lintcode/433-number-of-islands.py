@@ -1,32 +1,34 @@
 class Solution:
     """
-    @param: grid: a boolean 2D matrix
+    @param grid: a boolean 2D matrix
     @return: an integer
     """
 
     def numIslands(self, grid):
         # write your code here
-        if grid is None or len(grid) == 0 or len(grid[0]) == 0:
-            return 0
+        def sol1():
+            def dfs(grid, i, j):
+                if i < 0 or j < 0 or i >= len(grid) or j >= len(grid[0]) or grid[i][j] != 1: return
+                grid[i][j] = '#'
+                for di, dj in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                    dfs(grid, i + di, j + dj)
 
-        row, col = len(grid), len(grid[0])
-        visited = [[False for _ in range(col)] for _ in range(row)]
+            if not grid: return 0
+            count = 0
+            for i in range(len(grid)):
+                for j in range(len(grid[0])):
+                    if grid[i][j] == 1:
+                        dfs(grid, i, j)
+                        count += 1
+            return count
 
-        result = 0
-        for r in range(row):
-            for c in range(col):
-                if grid[r][c] == 1 and not visited[r][c]:
-                    result += 1
-                    self.bfs(grid, visited, r, c)
-        return result
+        def sol2():
+            def sink(i, j):
+                if not (0 <= i < len(grid) and 0 <= j < len(grid[i]) and grid[i][j] == 1): return 0
+                grid[i][j] = 0
+                list(map(sink, (i + 1, i - 1, i, i), (j, j, j + 1, j - 1)))
+                return 1
 
-    def bfs(self, grid, visited, row, col):
-        if 0 <= row < len(grid) \
-                and 0 <= col < len(grid[0]) \
-                and not visited[row][col] \
-                and grid[row][col] == 1:
-            visited[row][col] = True
-            self.bfs(grid, visited, row - 1, col)
-            self.bfs(grid, visited, row, col + 1)
-            self.bfs(grid, visited, row + 1, col)
-            self.bfs(grid, visited, row, col - 1)
+            return sum(sink(i, j) for i in range(len(grid)) for j in range(len(grid[i])))
+
+        return sol2()

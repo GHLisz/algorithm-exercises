@@ -19,12 +19,10 @@ class Solution:
             nonlocal pre, res
             if not node: return
             inorder(node.left)
-            if pre != -1:
-                res = min(res, node.val - pre)
+            res = min(res, node.val - pre) if pre != -1 else res
             pre = node.val
             inorder(node.right)
 
-        import math
-        res, pre = math.inf, -1
+        res, pre = float('inf'), -1
         inorder(root)
         return res
