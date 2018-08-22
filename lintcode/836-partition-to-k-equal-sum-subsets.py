@@ -7,8 +7,6 @@ class Solution:
 
     def partitiontoEqualSumSubsets(self, nums, k):
         # write your code here
-        if k == 1: return True
-
         n, total = len(nums), sum(nums)
         if k > n: return False
         if total % k: return False
@@ -16,15 +14,14 @@ class Solution:
         target, seen = total // k, [0] * n
         nums.sort(reverse=True)
 
-        def dfs(k, index, cur_sum):
+        def dfs(k, idx, cur_sum):
             if k == 1: return True
             if cur_sum == target: return dfs(k - 1, 0, 0)
 
-            for i in range(index, n):
+            for i in range(idx, n):
                 if not seen[i] and cur_sum + nums[i] <= target:
                     seen[i] = 1
-                    if dfs(k, i + 1, cur_sum + nums[i]):
-                        return True
+                    if dfs(k, i + 1, cur_sum + nums[i]): return True
                     seen[i] = 0
             return False
 
