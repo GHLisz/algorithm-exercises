@@ -1,5 +1,4 @@
 class DataStream:
-
     def __init__(self):
         # do intialization if necessary
         self.head = ListNode(0)
@@ -7,12 +6,11 @@ class DataStream:
         self.num_to_prev = {}
         self.duplicates = set()
 
-    """
-    @param num: next number in stream
-    @return: nothing
-    """
-
     def add(self, num):
+        """
+        @param num: next number in stream
+        @return: nothing
+        """
         # write your code here
         if num in self.duplicates:
             return
@@ -25,11 +23,10 @@ class DataStream:
             self.tail.next = node
             self.tail = node
 
-    """
-    @return: the first unique number in stream
-    """
-
     def firstUnique(self):
+        """
+        @return: the first unique number in stream
+        """
         # write your code here
         return self.head.next.val if self.head.next else -1
 
