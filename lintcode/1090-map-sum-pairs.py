@@ -39,7 +39,7 @@ class TrieNode:
         self.children = {}
         self.score = 0
 
-    # Your MapSum object will be instantiated and called as such:
+# Your MapSum object will be instantiated and called as such:
 # obj = MapSum()
 # obj.insert(key,val)
 # param_2 = obj.sum(prefix)
