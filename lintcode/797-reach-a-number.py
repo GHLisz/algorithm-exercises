@@ -6,17 +6,8 @@ class Solution:
 
     def reachNumber(self, target):
         # Write your code here
-        t, n, sum = abs(target), 0, 0
-
-        while t > sum:
-            n += 1
-            sum += n
-
-        if t == sum:
-            return n
-
-        rem = sum - target
-        if (rem % 2) == 0:
-            return n
-        else:
-            return n + 1 if (n % 2) == 0 else n + 2
+        target, k = abs(target), 0
+        while target > 0:
+            k += 1
+            target -= k
+        return k + 1 + k % 2 if target % 2 else k

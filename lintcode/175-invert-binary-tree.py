@@ -9,12 +9,26 @@ class TreeNode:
 
 class Solution:
     """
-    @param: root: a TreeNode, the root of the binary tree
+    @param root: a TreeNode, the root of the binary tree
     @return: nothing
     """
+
     def invertBinaryTree(self, root):
         # write your code here
-        if not root: return
-        root.left, root.right = root.right, root.left
-        self.invertBinaryTree(root.left)
-        self.invertBinaryTree(root.right)
+        def recursive(root):
+            if not root: return
+            root.left, root.right = root.right, root.left
+            list(map(recursive, [root.left, root.right]))
+
+        def iterative(root):
+            if not root: return None
+            que = [root]
+            while que:
+                cur = que.pop(0)
+                cur.left, cur.right = cur.right, cur.left
+                for sub in cur.left, cur.right:
+                    if sub:
+                        que.append(sub)
+            return root
+
+        return iterative(root)

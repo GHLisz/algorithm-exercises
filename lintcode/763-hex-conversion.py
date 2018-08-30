@@ -11,8 +11,7 @@ class Solution:
         Change n to a base-k number.
         Up to base-36 is supported without special notation.
         """
-        if not n:
-            return '0'
+        if not n: return '0'
 
         num_rep = {i: chr(i + 55) for i in range(10, 36)}
         res, cur = '', n
