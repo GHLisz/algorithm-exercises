@@ -1,3 +1,12 @@
+"""
+Definition of TreeNode:
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left, self.right = None, None
+"""
+
+
 class Solution:
     """
     @param: root: the root of tree
@@ -5,18 +14,12 @@ class Solution:
     """
 
     def maxNode(self, root):
-        # Write your code here
-        if root is None:
-            return root
+        # write your code here
+        if not root: return root
 
         max_node = root
-
-        if root.left is not None:
-            left = self.maxNode(root.left)
-            max_node = max_node if max_node.val > left.val else left
-
-        if root.right is not None:
-            right = self.maxNode(root.right)
-            max_node = max_node if max_node.val > right.val else right
+        for sub in filter(bool, [root.left, root.right]):
+            sub_res = self.maxNode(sub)
+            max_node = max_node if max_node.val > sub_res.val else sub_res
 
         return max_node

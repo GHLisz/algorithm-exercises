@@ -16,15 +16,12 @@ class Solution:
     def cloneGraph(self, node):
         # write your code here
         def clone(node, umap):
-            if not node:
-                return node
-            if node.label in umap:
-                return umap[node.label]
+            if not node: return node
+            if node.label in umap: return umap[node.label]
+
             new_node = UndirectedGraphNode(node.label)
             umap[node.label] = new_node
-            for n in node.neighbors:
-                new_node.neighbors.append(clone(n, umap))
+            new_node.neighbors.extend([clone(n, umap) for n in node.neighbors])
             return new_node
 
-        umap = {}
-        return clone(node, umap)
+        return clone(node, {})

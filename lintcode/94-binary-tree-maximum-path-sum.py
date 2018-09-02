@@ -23,7 +23,6 @@ class Solution:
             max_val = max(max_val, left + right + node.val)
             return max(left, right) + node.val
 
-        import math
-        max_val = -math.inf
+        max_val = -float('inf')
         max_path_down(root)
         return max_val

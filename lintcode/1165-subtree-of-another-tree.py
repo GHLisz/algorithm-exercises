@@ -21,8 +21,7 @@ class Solution:
             return is_same(s, t) or is_subtree(s.left, t) or is_subtree(s.right, t)
 
         def is_same(s, t):
-            if s is None and t is None: return True
-            if s is None or t is None: return False
+            if s is None or t is None: return s == t
             return s.val == t.val and is_same(s.left, t.left) and is_same(s.right, t.right)
 
         return is_subtree(s, t)

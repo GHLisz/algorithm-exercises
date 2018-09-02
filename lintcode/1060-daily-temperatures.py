@@ -1,17 +1,43 @@
+"""
+Definition of TreeNode:
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left, self.right = None, None
+"""
+
+
 class Solution:
     """
-    @param temperatures: a list of daily temperatures
-    @return: a list of how many days you would have to wait until a warmer temperature
+    @param root: root of the given tree
+    @return: whether it is a mirror of itself
     """
 
-    def dailyTemperatures(self, temperatures):
+    def isSymmetric(self, root):
         # Write your code here
-        ts = temperatures
-        res, stack = [0] * len(ts), []
-        for i in range(len(ts) - 1, -1, -1):
-            while stack and ts[i] >= ts[stack[-1]]:
-                stack.pop()
-            if stack:
-                res[i] = stack[-1] - i
-            stack.append(i)
-        return res
+        def recursive():
+            def is_mirror(left, right):
+                if left is None or right is None: return left == right
+                return left.val == right.val \
+                       and is_mirror(left.left, right.right) \
+                       and is_mirror(left.right, right.left)
+
+            return is_mirror(root, root)
+
+        def iterative():
+            if root is None: return True
+
+            stack = [[root.left, root.right]]
+            while stack:
+                left, right = stack.pop(0)
+                if left is None and right is None: continue
+                if left is None or right is None: return False
+
+                if left.val == right.val:
+                    stack.insert(0, [left.left, right.right])
+                    stack.insert(0, [left.right, right.left])
+                else:
+                    return False
+            return True
+
+        return recursive()

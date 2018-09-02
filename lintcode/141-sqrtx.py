@@ -1,23 +1,21 @@
 class Solution:
     """
-    @param: x: An integer
+    @param x: An integer
     @return: The sqrt of x
     """
 
     def sqrt(self, x):
         # write your code here
-        if x == 0:
-            return 0
+        if x == 0: return 0
 
         start, end = 1, x
         while start + 1 < end:
-            mid = (start + end) / 2
-            if mid * mid == x:
+            mid = (start + end) // 2
+            if mid ** 2 == x:
                 return mid
-            elif mid * mid < x:
+            elif mid ** 2 < x:
                 start = mid
             else:
                 end = mid
-        if end * end <= x:
-            return end
-        return start
+
+        return end if end ** 2 <= x else start

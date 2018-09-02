@@ -6,9 +6,8 @@ class Solution:
 
     def partition(self, s):
         # write your code here
-        def sol1():  # backtrack
-            def is_pal(s):
-                return s == s[::-1]
+        def sol1():
+            is_pal = lambda x: x == x[::-1]
 
             def dfs(s, path, res):
                 if not s:
