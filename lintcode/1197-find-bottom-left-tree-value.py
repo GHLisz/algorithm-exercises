@@ -18,7 +18,7 @@ class Solution:
         def sol1():  # bfs
             queue = [root]
             for node in queue:
-                queue += list(filter(None, (node.right, node.left)))
+                queue += list(filter(bool, (node.right, node.left)))
             return node.val
 
         def sol2():  # dfs
