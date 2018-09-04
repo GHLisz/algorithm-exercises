@@ -9,23 +9,21 @@ class Interval(object):
 
 class Solution:
     """
-    @param: intervals: Sorted interval list.
-    @param: newInterval: new interval.
+    @param intervals: Sorted interval list.
+    @param newInterval: new interval.
     @return: A new interval list.
     """
+
     def insert(self, intervals, newInterval):
         # write your code here
-        result = []
-        insert_idx = 0
-        for interval in intervals:
-            if interval.end < newInterval.start:
-                result.append(interval)
-                insert_idx += 1
-            elif interval.start > newInterval.end:
-                result.append(interval)
-            else:
-                newInterval.start = min(interval.start, newInterval.start)
-                newInterval.end = max(interval.end, newInterval.end)
-        result.insert(insert_idx, newInterval)
-        return result
+        s, e = newInterval.start, newInterval.end
 
+        parts = merge, left, right = [], [], []
+
+        for i in intervals:
+            parts[(i.end < s) - (i.start > e)].append(i)
+
+        if merge:
+            s, e = min(s, merge[0].start), max(e, merge[-1].end)
+
+        return left + [Interval(s, e)] + right

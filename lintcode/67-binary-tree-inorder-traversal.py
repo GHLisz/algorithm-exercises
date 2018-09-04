@@ -9,11 +9,11 @@ class TreeNode:
 
 class Solution:
     """
-    @param root: The root of binary tree.
+    @param root: A Tree
     @return: Inorder in ArrayList which contains node values.
     """
+
     def inorderTraversal(self, root):
         # write your code here
-        if root is None:
-            return []
+        if root is None: return []
         return self.inorderTraversal(root.left) + [root.val] + self.inorderTraversal(root.right)
