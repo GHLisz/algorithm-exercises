@@ -6,21 +6,24 @@ class TreeNode:
         self.left, self.right = None, None
 """
 
+
 class Solution:
     """
     @param root: the root
     @return: the tilt of the whole tree
     """
+
     def findTilt(self, root):
         # Write your code here
-        def t(node):
+        def trav(node):
             nonlocal res
+
             if not node: return 0
-            left = t(node.left)
-            right = t(node.right)
-            tilt = abs(left-right)
+            left, right = trav(node.left), trav(node.right)
+            tilt = abs(left - right)
             res += tilt
-            return left+right+node.val
+            return left + right + node.val
+
         res = 0
-        t(root)
+        trav(root)
         return res
