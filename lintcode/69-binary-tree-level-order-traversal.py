@@ -9,27 +9,21 @@ class TreeNode:
 
 class Solution:
     """
-    @param: root: A Tree
+    @param root: A Tree
     @return: Level order a list of lists of integer
     """
 
     def levelOrder(self, root):
         # write your code here
-        result = []
+        if root is None: return []
 
-        if root is None:
-            return result
-
-        q = [root]
+        res, q = [], [root]
 
         while q:
             new_q = []
-            result.append([node.val for node in q])
+            res.append([node.val for node in q])
             for node in q:
-                if node.left:
-                    new_q.append(node.left)
-                if node.right:
-                    new_q.append(node.right)
+                for sub in filter(bool, [node.left, node.right]):
+                    new_q.append(sub)
             q = new_q
-
-        return result
+        return res
