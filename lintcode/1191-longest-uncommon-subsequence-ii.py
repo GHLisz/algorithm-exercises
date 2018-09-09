@@ -6,14 +6,12 @@ class Solution:
 
     def findLUSlength(self, strs):
         # write your code here
-        def is_sub_seq(w1, w2):
-            i = 0
-            for c in w2:
-                i += 1 if i < len(w1) and w1[i] == c else 0
-            return i == len(w1)
+        def is_sub(s, t):
+            t = iter(t)
+            return all(c in t for c in s)
 
-        strs.sort(key=len, reverse=True)
-        for i, word1 in enumerate(strs):
-            if all(not is_sub_seq(word1, word2) for j, word2 in enumerate(strs) if i != j):
-                return len(word1)
+        for s in sorted(strs, key=len, reverse=True):
+            if sum(is_sub(s, t) for t in strs) == 1:
+                return len(s)
+
         return -1
