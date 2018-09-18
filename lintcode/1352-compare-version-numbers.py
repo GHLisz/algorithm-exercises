@@ -7,7 +7,12 @@ class Solution:
 
     def compareVersion(self, version1, version2):
         # Write your code here
-        from itertools import zip_longest
-        cmp = lambda x, y: 1 if x > y else -1 if x < y else 0
-        splits = (map(int, v.split('.')) for v in (version1, version2))
-        return cmp(*zip(*zip_longest(*splits, fillvalue=0)))
+        vs1 = [int(v) for v in version1.split('.')]
+        vs2 = [int(v) for v in version2.split('.')]
+
+        for i in range(max(len(vs1), len(vs2))):
+            v1 = vs1[i] if i < len(vs1) else 0
+            v2 = vs2[i] if i < len(vs2) else 0
+            if v1 > v2: return 1
+            if v1 < v2: return -1
+        return 0
