@@ -15,12 +15,30 @@ class Solution:
 
     def preorderTraversal(self, root):
         # write your code here
-        def traverse(node, res):
-            if not node: return
-            res.append(node.val)
-            traverse(node.left, res)
-            traverse(node.right, res)
+        def recursive():
+            def trav(node, res):
+                if not node: return
 
-        res = []
-        traverse(root, res)
-        return res
+                res.append(node.val)
+                trav(node.left, res)
+                trav(node.right, res)
+
+            res = []
+            trav(root, res)
+            return res
+
+        def iterative():
+            if not root: return []
+
+            res, stack = [], [root]
+
+            while stack:
+                node = stack.pop()
+                res.append(node.val)
+                if node.right:
+                    stack.append(node.right)
+                if node.left:
+                    stack.append(node.left)
+            return res
+
+        return iterative()

@@ -16,17 +16,29 @@ class Solution:
 
     def insertNode(self, root, node):
         # write your code here
-        if root is None:
-            return node
+        def recursive(root, node):
+            if not node: return root
+            if not root: return node
 
-        cur = root
-        while cur != node:
-            if node.val < cur.val:
-                if cur.left is None:
-                    cur.left = node
-                cur = cur.left
+            if node.val < root.val:
+                root.left = recursive(root.left, node)
             else:
-                if cur.right is None:
-                    cur.right = node
-                cur = cur.right
-        return root
+                root.right = recursive(root.right, node)
+            return root
+
+        def iterative(root, node):
+            if not root: return node
+
+            cur = root
+            while cur != node:
+                if node.val < cur.val:
+                    if cur.left is None:
+                        cur.left = node
+                    cur = cur.left
+                else:
+                    if cur.right is None:
+                        cur.right = node
+                    cur = cur.right
+            return root
+
+        return iterative(root, node)
