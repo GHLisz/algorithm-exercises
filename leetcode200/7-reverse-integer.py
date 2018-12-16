@@ -28,14 +28,12 @@ class Solution:
         :type x: int
         :rtype: int
         """
-        res = 0
+        res, rem = 0, abs(x)
 
-        while x != 0:
-            tail = x % 10
-            new_res = res * 10 + tail
-            if (new_res - tail) / 10 != res:
-                return 0
-            res = new_res
-            x = x // 10
+        while rem:
+            res = res * 10 + rem % 10
+            rem //= 10
 
-        return res
+        if res < -2 ** 31 or res > 2 ** 31 - 1:
+            return 0
+        return -res if x < 0 else res
