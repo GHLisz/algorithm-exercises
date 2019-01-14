@@ -36,4 +36,5 @@ class Solution:
         :type prices: List[int]
         :rtype: int
         """
-        return sum(max(0, x - y) for x, y in zip(prices[1:], prices[:-1]))
+        return sum(max(0, x - y)
+                   for x, y in zip(prices[1:], prices[:-1]))
