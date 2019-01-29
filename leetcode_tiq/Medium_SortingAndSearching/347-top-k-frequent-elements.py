@@ -47,4 +47,11 @@ class Solution(object):
                 pos -= 1
             return res[:k]
 
-        return sol1()
+        def sol2():  # max heap
+            import heapq, collections
+            c = collections.Counter(nums)
+            h = [(-freq, num) for num, freq in c.items()]
+            heapq.heapify(h)
+            return [heapq.heappop(h)[1] for _ in range(k)]
+
+        return sol2()
