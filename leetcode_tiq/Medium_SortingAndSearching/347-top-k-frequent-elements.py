@@ -20,7 +20,7 @@ Your algorithm's time complexity must be better than O(n log n), where n is the 
 """
 
 
-class Solution(object):
+class Solution:
     def topKFrequent(self, nums, k):
         """
         :type nums: List[int]
@@ -54,4 +54,4 @@ class Solution(object):
             heapq.heapify(h)
             return [heapq.heappop(h)[1] for _ in range(k)]
 
-        return sol2()
+        return sol1()
