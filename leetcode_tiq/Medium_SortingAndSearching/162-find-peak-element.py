@@ -37,10 +37,10 @@ class Solution:
         l, r = 0, len(nums) - 1
 
         while l < r:
-            m1, m2 = (l + r) // 2, (l + r) // 2 + 1
-            if nums[m1] < nums[m2]:
-                l = m2
+            m = (l + r) // 2
+            if nums[m] < nums[m+1]:
+                l = m+1
             else:
-                r = m1
+                r = m
 
         return l
