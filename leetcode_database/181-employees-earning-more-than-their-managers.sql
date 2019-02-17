@@ -25,8 +25,8 @@ Given the Employee table, write a SQL query that finds out employees who earn mo
 
 
 # Write your MySQL query statement below
-SELECT E.Name AS Employee
-FROM Employee AS E,
-     Employee AS M
-WHERE E.ManagerId = M.Id
-  AND E.Salary > M.Salary;
+SELECT e.Name AS Employee
+FROM Employee AS e,
+     Employee AS m
+WHERE e.ManagerId = m.Id
+  AND e.Salary > m.Salary;

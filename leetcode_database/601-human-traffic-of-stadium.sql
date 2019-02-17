@@ -47,5 +47,4 @@ WHERE ((s1.id + 1 = s2.id AND s1.id + 2 = s3.id)
   AND s1.people >= 100
   AND s2.people >= 100
   AND s3.people >= 100
-
 GROUP BY s1.id

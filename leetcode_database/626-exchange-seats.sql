@@ -38,6 +38,9 @@ SELECT (CASE
           WHEN MOD(id, 2) != 0 AND records != id THEN id + 1
           WHEN MOD(id, 2) != 0 AND records = id THEN id
           ELSE id - 1
-  END) AS id, student
-FROM seat, (SELECT COUNT(*) AS records FROM seat) AS seat_records
+  END) AS id,
+       student
+FROM seat,
+     (SELECT COUNT(*) AS records
+      FROM seat) AS seat_records
 ORDER BY id ASC;

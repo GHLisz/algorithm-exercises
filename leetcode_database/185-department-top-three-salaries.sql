@@ -39,7 +39,9 @@ Write a SQL query to find employees who earn the top three salaries in each of t
 
 
 # Write your MySQL query statement below
-SELECT d.Name AS Department, e1.Name AS Employee, e1.Salary
+SELECT d.Name  AS Department,
+       e1.Name AS Employee,
+       e1.Salary
 FROM Employee AS e1
        JOIN Department AS d
             ON e1.DepartmentId = d.Id

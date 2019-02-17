@@ -36,11 +36,11 @@ Using the above tables as example, return the following:
 
 
 # Write your MySQL query statement below
-SELECT c.Name AS Customers
-FROM Customers AS c
-WHERE c.Id NOT IN (SELECT o.CustomerId FROM Orders as o);
+SELECT `Name` AS Customers
+FROM Customers
+WHERE Customers.Id NOT IN (SELECT CustomerId FROM Orders);
 
-# SELECT c.Name AS Customers
-# FROM Customers AS c
-#        LEFT JOIN Orders as o ON c.Id = o.CustomerId
-# WHERE o.CustomerId is NULL;
+# SELECT Name AS Customers
+# FROM Customers
+#        LEFT JOIN Orders ON Customers.Id = Orders.CustomerId
+# WHERE Orders.CustomerId IS NULL;

@@ -32,5 +32,5 @@ For the example above, the output should be:
 SELECT *
 FROM cinema
 WHERE MOD(id, 2) = 1
-  AND description <> "boring"
+  AND `description` <> "boring"
 ORDER BY rating DESC;
