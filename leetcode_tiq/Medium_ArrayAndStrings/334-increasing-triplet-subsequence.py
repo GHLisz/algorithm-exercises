@@ -23,11 +23,7 @@ Output: false
 
 
 class Solution:
-    def increasingTriplet(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: bool
-        """
+    def increasingTriplet(self, nums: 'List[int]') -> 'bool':
 
         def sol1():
             first = second = float('inf')
@@ -43,7 +39,8 @@ class Solution:
         def sol2():  # generalized
             import bisect
 
-            k, inc = 3, [float('inf')] * (k - 1)
+            k = 3
+            inc = [float('inf')] * (k - 1)
             for n in nums:
                 i = bisect.bisect_left(inc, n)
                 if i >= k - 1:

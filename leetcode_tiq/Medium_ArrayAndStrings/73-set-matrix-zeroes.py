@@ -42,10 +42,9 @@ Could you devise a constant space solution?
 
 
 class Solution:
-    def setZeroes(self, matrix):
+    def setZeroes(self, matrix: 'List[List[int]]') -> 'None':
         """
-        :type matrix: List[List[int]]
-        :rtype: void Do not return anything, modify matrix in-place instead.
+        Do not return anything, modify matrix in-place instead.
         """
         m, n, fr, fc = len(matrix), len(matrix[0]), False, False
 

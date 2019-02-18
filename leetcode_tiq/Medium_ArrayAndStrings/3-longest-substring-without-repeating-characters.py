@@ -25,11 +25,7 @@ Explanation: The answer is "wke", with the length of 3.
 
 
 class Solution:
-    def lengthOfLongestSubstring(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
+    def lengthOfLongestSubstring(self, s: 'str') -> 'int':
         res, left, d = 0, -1, {}
 
         for i, c in enumerate(s):

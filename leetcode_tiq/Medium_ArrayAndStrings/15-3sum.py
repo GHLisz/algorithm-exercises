@@ -22,11 +22,7 @@ A solution set is:
 
 
 class Solution:
-    def threeSum(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[List[int]]
-        """
+    def threeSum(self, nums: 'List[int]') -> 'List[List[int]]':
         res, nums = [], sorted(nums)
 
         for k in range(len(nums) - 2):

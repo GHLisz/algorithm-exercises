@@ -18,12 +18,7 @@ Output: "bb"
 
 
 class Solution:
-    def longestPalindrome(self, s):
-        """
-        :type s: str
-        :rtype: str
-        """
-
+    def longestPalindrome(self, s: 'str') -> 'str':
         def extend(s, l, r):
             nonlocal max_len, start
 

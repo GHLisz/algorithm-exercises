@@ -22,11 +22,7 @@ The order of your output does not matter.
 
 
 class Solution:
-    def groupAnagrams(self, strs):
-        """
-        :type strs: List[str]
-        :rtype: List[List[str]]
-        """
+    def groupAnagrams(self, strs: 'List[str]') -> 'List[List[str]]':
         import collections
 
         ans = collections.defaultdict(list)
