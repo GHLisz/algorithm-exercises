@@ -28,11 +28,9 @@ Could you do it in-place with O(1) extra space?
 
 
 class Solution:
-    def rotate(self, nums, k):
+    def rotate(self, nums: 'List[int]', k: 'int') -> 'None':
         """
-        :type nums: List[int]
-        :type k: int
-        :rtype: void Do not return anything, modify nums in-place instead.
+        Do not return anything, modify nums in-place instead.
         """
 
         def reverse(arr, l, r):

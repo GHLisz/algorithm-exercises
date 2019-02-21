@@ -17,10 +17,9 @@ Minimize the total number of operations.
 
 
 class Solution:
-    def moveZeroes(self, nums):
+    def moveZeroes(self, nums: 'List[int]') -> 'None':
         """
-        :type nums: List[int]
-        :rtype: void Do not return anything, modify nums in-place instead.
+        Do not return anything, modify nums in-place instead.
         """
         c = 0
         for i in range(len(nums)):

@@ -55,11 +55,7 @@ The given board size is always 9x9.
 
 
 class Solution:
-    def isValidSudoku(self, board):
-        """
-        :type board: List[List[str]]
-        :rtype: bool
-        """
+    def isValidSudoku(self, board: 'List[List[str]]') -> 'bool':
         r, c, g = [[set() for _ in range(9)] for _ in range(3)]
 
         for ri in range(9):

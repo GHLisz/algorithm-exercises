@@ -31,10 +31,6 @@ Explanation: In this case, no transaction is done, i.e. max profit = 0.
 
 
 class Solution:
-    def maxProfit(self, prices):
-        """
-        :type prices: List[int]
-        :rtype: int
-        """
+    def maxProfit(self, prices: 'List[int]') -> 'int':
         return sum(max(0, x - y)
                    for x, y in zip(prices[1:], prices[:-1]))

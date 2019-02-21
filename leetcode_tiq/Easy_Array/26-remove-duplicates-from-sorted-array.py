@@ -25,11 +25,7 @@ It doesn't matter what values are set beyond the returned length.
 
 
 class Solution:
-    def removeDuplicates(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
+    def removeDuplicates(self, nums: 'List[int]') -> 'int':
         c = 0
         for n in nums:
             if c == 0 or n != nums[c - 1]:

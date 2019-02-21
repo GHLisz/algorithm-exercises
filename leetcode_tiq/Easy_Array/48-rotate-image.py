@@ -47,10 +47,9 @@ rotate the input matrix in-place such that it becomes:
 
 
 class Solution:
-    def rotate(self, matrix):
+    def rotate(self, matrix: 'List[List[int]]') -> 'None':
         """
-        :type matrix: List[List[int]]
-        :rtype: void Do not return anything, modify matrix in-place instead.
+        Do not return anything, modify matrix in-place instead.
         """
         m, n = matrix, len(matrix)
         for i in range(n):

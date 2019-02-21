@@ -23,11 +23,7 @@ Explanation: The array represents the integer 4321.
 
 
 class Solution:
-    def plusOne(self, digits):
-        """
-        :type digits: List[int]
-        :rtype: List[int]
-        """
+    def plusOne(self, digits: 'List[int]') -> 'List[int]':
         carry, digits[-1] = divmod(digits[-1] + 1, 10)
 
         for i in range(len(digits) - 2, -1, -1):
