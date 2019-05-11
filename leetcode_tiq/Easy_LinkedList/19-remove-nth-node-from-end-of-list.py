@@ -38,6 +38,7 @@ class Solution:
 
         for _ in range(n + 1):
             fast = fast.next
+
         while fast:
             fast = fast.next
             slow = slow.next
