@@ -4,7 +4,6 @@ Easy
 
 
 Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
-
 For example, this binary tree [1,2,2,3,4,4,3] is symmetric:
 
     1
@@ -18,6 +17,7 @@ But the following [1,2,2,null,3,null,3] is not:
   2   2
    \   \
    3    3
+
 Note:
 Bonus points if you could solve it both recursively and iteratively.
 """
@@ -31,12 +31,7 @@ Bonus points if you could solve it both recursively and iteratively.
 #         self.right = None
 
 class Solution:
-    def isSymmetric(self, root):
-        """
-        :type root: TreeNode
-        :rtype: bool
-        """
-
+    def isSymmetric(self, root: TreeNode) -> bool:
         def sol1():  # recursive
             def is_mirror(left, right):
                 if not left:
@@ -46,7 +41,6 @@ class Solution:
                 return left.val == right.val \
                        and is_mirror(left.left, right.right) \
                        and is_mirror(left.right, right.left)
-
             return is_mirror(root, root)
 
         def sol2():  # iterative

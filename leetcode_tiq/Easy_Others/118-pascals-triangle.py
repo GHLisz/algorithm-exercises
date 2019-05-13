@@ -4,11 +4,10 @@ Easy
 
 
 Given a non-negative integer numRows, generate the first numRows of Pascal's triangle.
-
-In Pascal's triangle, each number is the sum of the two numbers directly above it.
+<p><img alt="" src="https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif" style="height:240px; width:260px"><br>
+<small>In Pascal's triangle, each number is the sum of the two numbers directly above it.</small></p>
 
 Example:
-
 Input: 5
 Output:
 [
@@ -22,13 +21,11 @@ Output:
 
 
 class Solution:
-    def generate(self, numRows):
-        """
-        :type numRows: int
-        :rtype: List[List[int]]
-        """
+    def generate(self, numRows: int) -> List[List[int]]:
         res = [[1]]
+
         for _ in range(numRows - 1):
             res.append([x + y for x, y in
                         zip(res[-1] + [0], [0] + res[-1])])
+
         return res[:numRows]

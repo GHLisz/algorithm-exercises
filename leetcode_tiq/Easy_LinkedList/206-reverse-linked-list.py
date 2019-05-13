@@ -6,11 +6,10 @@ Easy
 Reverse a singly linked list.
 
 Example:
-
 Input: 1->2->3->4->5->NULL
 Output: 5->4->3->2->1->NULL
-Follow up:
 
+Follow up:
 A linked list can be reversed either iteratively or recursively. Could you implement both?
 """
 
@@ -22,12 +21,7 @@ A linked list can be reversed either iteratively or recursively. Could you imple
 #         self.next = None
 
 class Solution:
-    def reverseList(self, head):
-        """
-        :type head: ListNode
-        :rtype: ListNode
-        """
-
+    def reverseList(self, head: ListNode) -> ListNode:
         def iterative(head):
             pre = None
             while head:

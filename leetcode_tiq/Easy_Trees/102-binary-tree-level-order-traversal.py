@@ -29,12 +29,7 @@ return its level order traversal as:
 #         self.right = None
 
 class Solution:
-    def levelOrder(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[List[int]]
-        """
-
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
         def sol1():  # dfs, recursive
             def trav(node, res, depth):
                 if not node:
@@ -61,7 +56,6 @@ class Solution:
                     for child in filter(bool, [node.left, node.right]):
                         new_q.append(child)
                 q = new_q
-
             return res
 
         return sol2()

@@ -6,7 +6,6 @@ Medium
 Shuffle a set of numbers without duplicates.
 
 Example:
-
 // Init an array with set 1, 2, and 3.
 int[] nums = {1,2,3};
 Solution solution = new Solution(nums);
@@ -23,23 +22,18 @@ solution.shuffle();
 
 
 class Solution:
-    def __init__(self, nums):
-        """
-        :type nums: List[int]
-        """
+    def __init__(self, nums: List[int]):
         self.arr = nums
 
-    def reset(self):
+    def reset(self) -> List[int]:
         """
         Resets the array to its original configuration and return it.
-        :rtype: List[int]
         """
         return self.arr
 
-    def shuffle(self):
+    def shuffle(self) -> List[int]:
         """
         Returns a random shuffling of the array.
-        :rtype: List[int]
         """
         from random import randint
         a = self.arr[:]

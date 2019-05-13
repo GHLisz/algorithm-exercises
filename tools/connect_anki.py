@@ -2,6 +2,7 @@
 from typing import List
 
 import json
+import os
 import requests
 from pprint import pprint
 
@@ -13,11 +14,7 @@ HOST_URL = 'http://localhost:8765'
 
 
 def request(action, **params):
-    res = {'action': action, 'params': params, 'version': 6}
-    # print('------------get notes below:----------')
-    # pprint(res)
-    # print('--------------------------------------')
-    return res
+    return {'action': action, 'params': params, 'version': 6}
 
 
 def invoke(action, **params):
@@ -68,11 +65,11 @@ def highlight_python(code):
     return highlight(code, lexer, formatter)
 
 
-def set_code():
-    fn = r"26-remove-duplicates-from-sorted-array.py"
+def convert_src_file_to_note(fn, deck_name):
+    # fn = r"26-remove-duplicates-from-sorted-array.py"
 
     content = open(fn, encoding='utf8').read()
-    q, a = content.split('"""\n\n')
+    q, a = content.split('\n"""\n\n')
 
     q = q.strip('"""\n')
     q = '<b>' + q.replace('\n', '</b>\n', 1)
@@ -82,13 +79,26 @@ def set_code():
     a = highlight_python(a)
     a = f'<div align="left">{a}</div>'
 
-    print(q)
     print('------------')
+    print(q)
+    print('########')
     print(a)
+    print('------------')
 
-    add_basic_note('test1', q, a, ['a'])
+    add_basic_note(deck_name, q, a, ['a'])
+
+
+def main():
+    src_path = r"leetcode_tiq\Easy_Array"
+    files = os.listdir(src_path)
+    files = [os.path.join(src_path, fn) for fn in files]
+    # print(*files, sep='\n')
+    for fn in files:
+        print(f'******processing: {fn} *********')
+        convert_src_file_to_note(fn, 'test1')
 
 
 if __name__ == '__main__':
-    set_code()
+    fn = r"Easy_Array\36-valid-sudoku.py"
+    convert_src_file_to_note(fn, 'Default')
     pass
