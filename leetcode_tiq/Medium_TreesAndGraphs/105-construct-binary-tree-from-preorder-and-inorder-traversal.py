@@ -9,11 +9,9 @@ Note:
 You may assume that duplicates do not exist in the tree.
 
 For example, given
-
 preorder = [3,9,20,15,7]
 inorder = [9,3,15,20,7]
 Return the following binary tree:
-
     3
    / \
   9  20
@@ -30,13 +28,7 @@ Return the following binary tree:
 #         self.right = None
 
 class Solution:
-    def buildTree(self, preorder, inorder):
-        """
-        :type preorder: List[int]
-        :type inorder: List[int]
-        :rtype: TreeNode
-        """
-
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
         def sol1(preorder, inorder):  # recursive
             if not preorder:
                 return None

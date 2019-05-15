@@ -6,7 +6,6 @@ Medium
 Given a collection of distinct integers, return all possible permutations.
 
 Example:
-
 Input: [1,2,3]
 Output:
 [
@@ -20,13 +19,8 @@ Output:
 """
 
 
-class Solution(object):
-    def permute(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[List[int]]
-        """
-
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
         def backtrack(res, nums, j):
             if j == len(nums):
                 res.append(nums[:])

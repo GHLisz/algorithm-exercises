@@ -1,12 +1,12 @@
 """
 601. Flatten 2D Vector
+Medium
 
 
 Implement an iterator to flatten a 2d vector.
 
 Example
 Given 2d vector =
-
 [
   [1,2],
   [3],

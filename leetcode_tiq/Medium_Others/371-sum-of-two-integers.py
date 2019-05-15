@@ -6,18 +6,17 @@ Easy
 Calculate the sum of two integers a and b, but you are not allowed to use the operator + and -.
 
 Example 1:
-
 Input: a = 1, b = 2
 Output: 3
-Example 2:
 
+Example 2:
 Input: a = -2, b = 3
 Output: 1
 """
 
 
 class Solution:
-    def getSum(self, a: 'int', b: 'int') -> 'int':
+    def getSum(self, a: int, b: int) -> int:
         # naive (but wrong) ans to explain what happened
         # while b != 0:
         #     _a = a ^ b  # no carry

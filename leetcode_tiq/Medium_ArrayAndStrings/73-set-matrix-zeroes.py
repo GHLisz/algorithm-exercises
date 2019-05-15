@@ -6,7 +6,6 @@ Medium
 Given a m x n matrix, if an element is 0, set its entire row and column to 0. Do it in-place.
 
 Example 1:
-
 Input:
 [
   [1,1,1],
@@ -19,8 +18,8 @@ Output:
   [0,0,0],
   [1,0,1]
 ]
-Example 2:
 
+Example 2:
 Input:
 [
   [0,1,2,0],
@@ -33,8 +32,8 @@ Output:
   [0,4,5,0],
   [0,3,1,0]
 ]
-Follow up:
 
+Follow up:
 A straight forward solution using O(mn) space is probably a bad idea.
 A simple improvement uses O(m + n) space, but still not the best solution.
 Could you devise a constant space solution?
@@ -42,7 +41,7 @@ Could you devise a constant space solution?
 
 
 class Solution:
-    def setZeroes(self, matrix: 'List[List[int]]') -> 'None':
+    def setZeroes(self, matrix: List[List[int]]) -> None:
         """
         Do not return anything, modify matrix in-place instead.
         """

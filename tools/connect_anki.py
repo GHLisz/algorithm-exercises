@@ -11,6 +11,8 @@ from pygments.lexers.python import Python3Lexer
 from pygments.formatters.html import HtmlFormatter
 
 HOST_URL = 'http://localhost:8765'
+DECK_NAME = 'LeetCode - Top Interview Questions'
+ROOT_DIR = r"leetcode_tiq"
 
 
 def request(action, **params):
@@ -59,13 +61,13 @@ def add_basic_note(deck_name: str, fields_front: str, fields_back: str, tags: 'L
 # result = invoke('deckNames')
 # print('got list of decks: {}'.format(result))
 
-def highlight_python(code):
+def highlight_python(code: str):
     lexer = Python3Lexer(stripall=True)
     formatter = HtmlFormatter(noclasses=True)
     return highlight(code, lexer, formatter)
 
 
-def convert_src_file_to_note(fn, deck_name):
+def convert_src_file_to_note(fn: str, deck_name: str, tags: 'List[str]'):
     # fn = r"26-remove-duplicates-from-sorted-array.py"
 
     content = open(fn, encoding='utf8').read()
@@ -85,20 +87,26 @@ def convert_src_file_to_note(fn, deck_name):
     print(a)
     print('------------')
 
-    add_basic_note(deck_name, q, a, ['a'])
+    add_basic_note(deck_name, q, a, tags)
 
 
 def main():
-    src_path = r"leetcode_tiq\Easy_Array"
-    files = os.listdir(src_path)
-    files = [os.path.join(src_path, fn) for fn in files]
-    # print(*files, sep='\n')
-    for fn in files:
-        print(f'******processing: {fn} *********')
-        convert_src_file_to_note(fn, 'test1')
+    tag_dirs = os.listdir(ROOT_DIR)
+    tag_dirs = [os.path.join(ROOT_DIR, d) for d in tag_dirs if not d.startswith('Hard')]
+
+    for tag_dir in tag_dirs:
+        tags = os.path.basename(tag_dir).split('_')
+        tags = [f'LeetCode_{t}' for t in tags]
+        print(tags)
+
+        files = os.listdir(tag_dir)
+        files = [os.path.join(tag_dir, fn) for fn in files]
+        print(*files, sep='\n')
+        for fn in files:
+            print(f'******processing: {fn} *********')
+            convert_src_file_to_note(fn, DECK_NAME, tags)
 
 
 if __name__ == '__main__':
-    fn = r"Easy_Array\36-valid-sudoku.py"
-    convert_src_file_to_note(fn, 'Default')
+    main()
     pass

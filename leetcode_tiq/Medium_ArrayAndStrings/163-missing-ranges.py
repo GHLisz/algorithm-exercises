@@ -12,14 +12,7 @@ return ["2", "4->49", "51->74", "76->99"].
 
 
 class Solution:
-    """
-    @param: nums: a sorted integer array
-    @param: lower: An integer
-    @param: upper: An integer
-    @return: a list of its missing ranges
-    """
-
-    def findMissingRanges(self, nums, lower, upper):
+    def findMissingRanges(self, nums: List[int], lower: int, upper: int) -> List[str]:
         # write your code here
         def get_range(start, end):
             return f'{start}' if start == end else f'{start}->{end}'

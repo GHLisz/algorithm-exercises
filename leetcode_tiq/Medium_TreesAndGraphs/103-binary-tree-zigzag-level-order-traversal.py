@@ -29,12 +29,7 @@ return its zigzag level order traversal as:
 #         self.right = None
 
 class Solution:
-    def zigzagLevelOrder(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[List[int]]
-        """
-
+    def zigzagLevelOrder(self, root: TreeNode) -> List[List[int]]:
         def trav(res, node, depth):
             if not node:
                 return
