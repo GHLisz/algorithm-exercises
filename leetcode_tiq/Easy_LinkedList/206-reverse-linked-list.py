@@ -31,6 +31,12 @@ class Solution:
                 pre = cur
             return pre
 
+        def iterative2(head):
+            cur, pre = head, None
+            while cur:
+                cur.next, pre, cur = pre, cur, cur.next
+            return pre
+
         def recursive(head):
             if head is None or head.next is None:
                 return head
